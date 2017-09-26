@@ -7,6 +7,7 @@ class QGroupBox;
 class QLabel;
 class QSpinBox;
 class QPushButton;
+class QChatServer;
 class QChatServerMainWindow : public QWidget
 {
     Q_OBJECT
@@ -35,6 +36,7 @@ private:
     QPushButton *m_pStartServerButton;
     QPushButton *m_pStopServerButton;
 
+    QChatServer *m_pServer;
     bool m_bRunning;
 };
 

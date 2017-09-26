@@ -6,6 +6,7 @@
 
 QT       += core gui
 QT       += network
+QT       += sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -27,10 +28,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
     qchatservermainwindow.cpp \
-    qchatserver.cpp
+    qchatserver.cpp \
+    loginserverrunnable.cpp \
+    chatrunnable.cpp
 
 HEADERS += \
     qchatservermainwindow.h \
-    qchatserver.h
+    qchatserver.h \
+    loginserverrunnable.h \
+    chatrunnable.h
 
 FORMS +=

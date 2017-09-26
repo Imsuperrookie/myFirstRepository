@@ -1,4 +1,5 @@
 #include "qchatservermainwindow.h"
+#include "qchatserver.h"
 #include <QLabel>
 #include <QGroupBox>
 #include <QPushButton>
@@ -20,9 +21,10 @@ QChatServerMainWindow::QChatServerMainWindow(QWidget *parent) :
     m_pPortNumberLabel(new QLabel("Port Number:")),
     m_pStartServerButton(new QPushButton(QString("Start Server"))),
     m_pStopServerButton(new QPushButton(QString("Stop Server"))),
+    m_pServer(new QChatServer),
     m_bRunning(true)
 {
-    setFixedSize(350,140);
+    setFixedSize(450,200);
     setWindowTitle(QString("服务器控制台"));
     m_pServerBox->setTitle(QString("服务器信息"));
 
@@ -30,11 +32,12 @@ QChatServerMainWindow::QChatServerMainWindow(QWidget *parent) :
     m_pPortNumber->setValue(8888);
     m_pStartServerButton->setFixedSize(100,30);
     m_pStopServerButton->setFixedSize(100,30);
-    m_pServerStatusLable->setFixedWidth(50);
+    //m_pServerStatusLable->setFixedWidth(50);
     m_pIpLabelTitle->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     m_pPortLabelTitle->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     m_pServerStatusLabelTitle->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     m_pCurrentOnLineNumberLabelTitle->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    m_pServerStatusLable->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 
     QString strStyleSheet = "QLabel {font-family: MicroSoft Yahei}";
     m_pIpLabelTitle->setStyleSheet(strStyleSheet);
@@ -89,6 +92,8 @@ QChatServerMainWindow::QChatServerMainWindow(QWidget *parent) :
     pBaseLayout->addWidget(m_pServerBox);
     pBaseLayout->addLayout(pStartServerLayout);
 
+    m_pServer->startServer(8888);
+
     connect(m_pPortNumber, SIGNAL(valueChanged(QString)), m_pPortLabel, SLOT(setText(QString)));
     connect(m_pStartServerButton, SIGNAL(clicked(bool)), this, SLOT(onStartButtonClicked()));
     connect(m_pStopServerButton, SIGNAL(clicked(bool)), this, SLOT(onStopButtonClicked()));
@@ -103,7 +108,7 @@ void QChatServerMainWindow::onStartButtonClicked()
     if(!m_bRunning)
     {
         m_bRunning = true;
-        m_pServerStatusLable->setText(QString("Running"));
+        m_pServerStatusLable->setText(QString("Running..."));
         m_pServerStatusLable->setStyleSheet("QLabel {color: green; font: bold}");
     }
 }
@@ -113,7 +118,7 @@ void QChatServerMainWindow::onStopButtonClicked()
     if(m_bRunning)
     {
         m_bRunning = false;
-        m_pServerStatusLable->setText(QString("Stopped"));
+        m_pServerStatusLable->setText(QString("Stopped..."));
         m_pServerStatusLable->setStyleSheet("QLabel {color: red; font: bold}");
     }
 }
