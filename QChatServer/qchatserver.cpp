@@ -1,5 +1,5 @@
 #include "qchatserver.h"
-#include "loginserverrunnable.h"
+#include "connectserverrunnable.h"
 #include <QtNetwork>
 #include <QThreadPool>
 #include <QDebug>
@@ -18,9 +18,9 @@ QChatServer::~QChatServer()
 
 void QChatServer::incomingConnection(qintptr handle)
 {
-    LoginServerRunnable *pLoginServer = new LoginServerRunnable(this);
-    pLoginServer->nClientSocket = handle;
-    m_pThreadPool->start(pLoginServer);
+    ConnectServerRunnable *pConnectServer = new ConnectServerRunnable(this);
+    pConnectServer->nClientSocket = handle;
+    m_pThreadPool->start(pConnectServer);
     qDebug() << "new connection...";
 }
 

@@ -1,16 +1,15 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2017-09-25T13:49:47
+# Project created by QtCreator 2017-09-27T11:04:28
 #
 #-------------------------------------------------
 
 QT       += core gui
 QT       += network
-QT       += sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = QChatServer
+TARGET = QChatClient
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -25,17 +24,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 
-SOURCES += \
-        main.cpp \
-    qchatservermainwindow.cpp \
-    qchatserver.cpp \
-    chatrunnable.cpp \
-    connectserverrunnable.cpp
+SOURCES += main.cpp\
+        qchatclientmainwindow.cpp
 
-HEADERS += \
-    qchatservermainwindow.h \
-    qchatserver.h \
-    chatrunnable.h \
-    connectserverrunnable.h
+HEADERS  += qchatclientmainwindow.h
 
-FORMS +=
+FORMS    += qchatclientmainwindow.ui
